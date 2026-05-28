@@ -3,21 +3,26 @@
  * @return {Promise<any>}
  */
 var promiseAll = function(functions) {
-  return new Promise((resolve, reject) => {
-    const results = [];
-    let count = 0;
+ return new Promise((resolve, reject)=>{
+    let result = []
+    let count = 0
 
-    functions.forEach((fn, index) => {
-      fn()
-        .then((value) => {
-          results[index] = value;
-          count++;
+    functions.forEach((fn, index)=>{
+        fn()
+        .then((value)=>{
+            result[index] = value
+            count++
 
-          if (count === functions.length) {
-            resolve(results);
-          }
+            if(count === functions.length ){
+                resolve(result)
+            }
+
         })
-        .catch(reject);
-    });
-  });
+        .catch(reject)
+
+ })
+
+    
+
+ })
 };
