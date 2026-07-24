@@ -3,15 +3,21 @@
  * @return {number[]}
  */
 var sortArrayByParity = function(nums) {
- let result = []
- for(let num of nums){
-    if(num % 2 === 0){
-        result.unshift(num)
-    }else{
-        if(num % 2 !== 0){
-            result.push(num)
-        }
+ let left = 0
+ let right = nums.length - 1
+
+while(left < right){
+    if(nums[left] % 2 === 0){
+        left++
+        continue
     }
- }
- return result
+    if(nums[right] % 2 !== 0){
+        right--
+        continue
+    }
+    [nums[left], nums[right]] = [nums[right], nums[left]]
+    left++
+    right--
+}
+return nums
 };
